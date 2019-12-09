@@ -5,6 +5,8 @@ import "fmt"
 // Deck list of cards
 type Deck []string
 
+type Hand = Deck
+
 func (deck Deck) print() {
 	for _, card := range deck {
 		fmt.Println(card)
@@ -15,7 +17,7 @@ func (deck Deck) print() {
 // NewDeck builds a new Deck
 func NewDeck() Deck {
 	suits := []string{"Hearts","Spades","Dimonds","Clubs"}
-	values := []string{"A","Two","Three","Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "J", "Q", "K"}
+	values := []string{"A", "J", "Q", "K"}
 
 	deck := Deck{}
 
@@ -27,4 +29,9 @@ func NewDeck() Deck {
 	}
 
 	return deck
+}
+
+// Deal takes N cards out of the deck
+func Deal(deck Deck, cards int) (Deck, Hand) {
+	return deck[cards:], deck[:cards]
 }
