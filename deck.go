@@ -5,9 +5,11 @@ import "fmt"
 // Deck list of cards
 type Deck []string
 
+// Hand alias for Deck
 type Hand = Deck
 
-func (deck Deck) print() {
+// Print prints all cards in a deck
+func (deck Deck) Print() {
 	for _, card := range deck {
 		fmt.Println(card)
 	}
