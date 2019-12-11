@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"os"
 	"io/ioutil"
 )
 
@@ -46,6 +47,21 @@ func NewDeck() Deck {
 	}
 
 	return deck
+}
+
+// NewDeckFromFile builds a new deck using the contents of a file in the system
+func NewDeckFromFile(filename string) Deck {
+	bytes, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		fmt.Println("Error reading deck from file, error was\n", err)
+		os.Exit(1)
+	}
+
+	commaSeparatedCards := string(bytes)
+	cards := strings.Split(commaSeparatedCards, ",")
+
+	return Deck(cards)
 }
 
 // Deal takes N cards out of the deck

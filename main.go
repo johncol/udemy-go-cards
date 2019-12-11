@@ -14,6 +14,10 @@ func main() {
 	fmt.Println(" --- Saving Deck to file", filename)
 	deck.SaveToFile(filename)
 
+	fmt.Println(" --- Reading deck from file", filename)
+	deck = NewDeckFromFile(filename)
+	deck.Print()
+
 	deck, hand := Deal(deck, 5)
 	fmt.Println(" --- Deck after deal")
 	deck.Print();
