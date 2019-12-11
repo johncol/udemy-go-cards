@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // Deck list of cards
 type Deck []string
@@ -15,6 +18,11 @@ func (deck Deck) Print() {
 	}
 }
 
+// ToString builds string with all cards separated by commas
+func (deck Deck) ToString() string {
+	cards := []string(deck)
+	return strings.Join(cards, ",")
+}
 
 // NewDeck builds a new Deck
 func NewDeck() Deck {
