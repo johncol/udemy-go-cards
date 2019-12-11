@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"strings"
 	"os"
+	"time"
 	"io/ioutil"
+	"math/rand"
 )
 
 // Deck list of cards
@@ -30,6 +32,17 @@ func (deck Deck) ToString() string {
 func (deck Deck) SaveToFile(filename string) error {
 	bytes := []byte(deck.ToString())
 	return ioutil.WriteFile(filename, bytes, 0666)
+}
+
+// Shuffle shuffles deck cards
+func (deck Deck) Shuffle() {
+	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
+	length := len(deck)
+
+	for index := range deck {
+		targetIndex := generator.Intn(length)
+		deck[index], deck[targetIndex] = deck[targetIndex], deck[index]
+	}
 }
 
 // NewDeck builds a new Deck

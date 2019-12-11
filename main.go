@@ -23,4 +23,8 @@ func main() {
 	deck.Print();
 	fmt.Println(" --- Hand")
 	hand.Print();
+
+	fmt.Println(" --- Deck after shuffle")
+	deck.Shuffle()
+	deck.Print();
 }
