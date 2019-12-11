@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"io/ioutil"
 )
 
 // Deck list of cards
@@ -22,6 +23,12 @@ func (deck Deck) Print() {
 func (deck Deck) ToString() string {
 	cards := []string(deck)
 	return strings.Join(cards, ",")
+}
+
+// SaveToFile saves the content of the deck as a string in a file
+func (deck Deck) SaveToFile(filename string) error {
+	bytes := []byte(deck.ToString())
+	return ioutil.WriteFile(filename, bytes, 0666)
 }
 
 // NewDeck builds a new Deck
