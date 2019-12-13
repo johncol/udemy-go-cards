@@ -9,6 +9,8 @@ import (
 	"math/rand"
 )
 
+var generator = rand.New(rand.NewSource(time.Now().UnixNano()))
+
 // Deck list of cards
 type Deck []string
 
@@ -36,7 +38,6 @@ func (deck Deck) SaveToFile(filename string) error {
 
 // Shuffle shuffles deck cards
 func (deck Deck) Shuffle() {
-	generator := rand.New(rand.NewSource(time.Now().UnixNano()))
 	length := len(deck)
 
 	for index := range deck {
